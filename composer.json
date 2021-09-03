@@ -1,0 +1,25 @@
+{
+  "name": "omeratagunn/binancephp-api",
+  "type": "library",
+  "description": "Composer package for binance restfull api",
+  "keywords": ["binance","binancephp", "binance rest api"],
+  "homepage": "https://github.com/tyraelll/Binance-PHP-API",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "openai\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Omer ATAGUN",
+      "email": "omratagn@gmail.com",
+      "homepage": "https://itstoritveomeratagun.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^7.2"
+  },
+  "minimum-stability": "stable"
+}
