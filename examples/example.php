@@ -1,6 +1,5 @@
 <?php
-
-include_once(__DIR__.'/../../vendor/autoload.php');
+include_once(__DIR__ . '/../vendor/autoload.php');
 
 use binancephpapi\Binance;
 use binancephpapi\Config\Config;
@@ -12,3 +11,5 @@ $getAllCoins = $binance->wallet()->getAllCoins();
 $getSnapSpot = $binance->wallet()->getDailyAccountSnapShot()->spot();
 
 $getSnapSpotWithOptions = $binance->wallet()->getDailyAccountSnapShot()->spotWithOptions(3, time()- 500, time());
+
+
