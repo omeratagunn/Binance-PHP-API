@@ -6,57 +6,41 @@ namespace binancephpapi\Wallet;
 
 use binancephpapi\Binance;
 use binancephpapi\Config\Config;
+use binancephpapi\Config\Constants;
 use binancephpapi\Http\Http;
+use binancephpapi\Http\Query;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
 class WalletEndPoints
 {
-    protected array $config = [
-        'BASE_URL' => 'https://api.binance.com',
-        'SECTION' => '/sapi',
-        'VERSION' => '/v1'
-    ];
 
-    protected $url = 'https://api.binance.com/sapi/v1/capital/config/getall';
+    protected string $url;
     protected Http $http;
+    private string $method = 'GET';
 
     public function __construct(string $publicKey, string $secretKey, Http $http){
+        $this->url = Constants::$url.'/sapi/v1/capital/config/getall';
         $this->http = $http;
     }
 
 
     public function getAllCoins(array $queryParams = []){
 
-        return $this->walletQueryBuilder($queryParams);
+        return Query::queryApi($this->method, $queryParams, $this->url, $this->http);
 
-    }
-
-    private function walletQueryBuilder(array $queryParams){
-        $query = Http::binanceQueryBuilder($queryParams);
-
-        try {
-            $request = $this->http->make()->request('GET', $this->url,
-                [
-                    'headers' => [
-                        'X-MBX-APIKEY' => Config::$publicKey,
-                        'Accept' => 'application/json',
-                    ],
-                    'query' => ['timestamp' => $query['BinanceServerTime'], 'signature' => $query['signature']]
-                ]);
-
-
-        } catch (GuzzleException $e) {
-
-            return $e->getMessage();
-        }
-        return $request->getBody()->getContents();
     }
 
     public function getDailyAccountSnapShot(){
         return new AccountSnapShot\AccountSnapShot($this->http);
     }
+
+    public function fastWithDrawSwitch(){
+        return new FastWithDrawSwitch\FastWithDrawSwitch($this->http);
+    }
+
+
 
 
 

@@ -5,15 +5,18 @@ namespace binancephpapi\Wallet\AccountSnapShot;
 
 
 use binancephpapi\Config\Config;
+use binancephpapi\Config\Constants;
 use binancephpapi\Http\Http;
+use binancephpapi\Http\Query;
 use binancephpapi\Wallet\WalletEndPoints;
 use GuzzleHttp\Exception\GuzzleException;
 
 class AccountSnapShot
 {
 
-    private $url = 'https://api.binance.com/sapi/v1/capital/config/getall';
+    private string $url;
     protected Http $http;
+    private string $method = 'GET';
 
     protected array $types = [
         'SPOT' => ['type' => 'SPOT'],
@@ -29,6 +32,7 @@ class AccountSnapShot
 
     public function __construct(Http $http)
     {
+        $this->url = Constants::$url.'/sapi/v1/capital/config/getall';
         $this->http = $http;
 
     }
@@ -75,24 +79,9 @@ class AccountSnapShot
         $type['limit'] = $this->options['limit'];
         $type['startTime'] = $this->options['startTime'];
         $type['endTime'] = $this->options['endTime'];
-        $query = Http::binanceQueryBuilder($type);
 
-        try {
-            $request = $this->http->make()->request('GET',  $this->url,
-                [
-                    'headers' => [
-                        'X-MBX-APIKEY' => Config::$publicKey,
-                        'Accept' => 'application/json',
-                    ],
-                    'query' => ['type'=>$type['type'], 'limit' => $type['limit'], 'startTime' => $type['startTime'], 'endTime' => $type['endTime'],  'timestamp' => $query['BinanceServerTime'], 'signature' => $query['signature']]
-                ]);
+        return Query::queryApi($this->method, $type, $this->url, $this->http);
 
-
-        } catch (GuzzleException $e) {
-
-            return $e->getMessage();
-        }
-        return $request->getBody()->getContents();
     }
 
 }

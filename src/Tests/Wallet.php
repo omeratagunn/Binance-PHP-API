@@ -59,4 +59,18 @@ class Wallet extends TestCase
 
     }
 
+    public function testUnAuthorizedFastWithDrawSwitchEnable(){
+        $res = $this->binance->wallet()->fastWithDrawSwitch()->enable();
+            // you need authorization //
+        $this->assertIsString('You are not authorized', $res);
+
+
+    }
+
+    public function testUnAuthorizedFastWithDrawSwitchDisable(){
+        $res = $this->binance->wallet()->fastWithDrawSwitch()->disable();
+        // you need authorization //
+        $this->assertIsString('You are not authorized', $res);
+    }
+
 }

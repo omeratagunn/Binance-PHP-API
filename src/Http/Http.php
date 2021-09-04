@@ -40,9 +40,11 @@ class Http
     }
 
     public static function binanceQueryBuilder(array $params){
+
         $binanceServerTime = self::BinanceServerTime();
         $signature = self::buildSignature($params, $binanceServerTime);
-        return ['BinanceServerTime'=>$binanceServerTime, 'signature' => $signature];
+
+        return ['BinanceServerTime'=>$binanceServerTime, 'signature' => $signature, 'Params' => $params];
     }
 
 
