@@ -7,7 +7,7 @@ namespace binancephpapi\Config;
 trait Config
 {
 
-    public static $publicKey = '';
+    public static $publicKey = 'teyeye';
     public static $secretKey = '';
 
 
