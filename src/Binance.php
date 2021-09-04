@@ -34,7 +34,7 @@ class Binance
     }
 
     public function wallet(){
-        return new WalletEndPoints(Config::$publicKey, Config::$secretKey, $this->http);
+        return new WalletEndPoints($this->http);
     }
 
     public function systemStatus(){

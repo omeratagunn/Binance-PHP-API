@@ -9,6 +9,8 @@ use binancephpapi\Config\Config;
 use binancephpapi\Config\Constants;
 use binancephpapi\Http\Http;
 use binancephpapi\Http\Query;
+use binancephpapi\Wallet\EventHistory\DepositHistory;
+use binancephpapi\Wallet\EventHistory\WithDrawHistory;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -20,7 +22,7 @@ class WalletEndPoints
     protected Http $http;
     private string $method = 'GET';
 
-    public function __construct(string $publicKey, string $secretKey, Http $http){
+    public function __construct(Http $http){
         $this->url = Constants::$url.'/sapi/v1/capital/config/getall';
         $this->http = $http;
     }
@@ -38,6 +40,14 @@ class WalletEndPoints
 
     public function fastWithDrawSwitch(){
         return new FastWithDrawSwitch\FastWithDrawSwitch($this->http);
+    }
+
+    public function depositHistory(){
+        return new DepositHistory($this->http);
+    }
+
+    public function withDrawHistory(){
+        return new WithDrawHistory($this->http);
     }
 
 
