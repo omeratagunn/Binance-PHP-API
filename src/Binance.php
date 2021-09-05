@@ -16,13 +16,8 @@ class Binance
 {
     protected object $http; // guzzle as default //
     private string $url;
-    protected array $config = [
-        'BASE_URL' => 'https://api.binance.com',
-        'SECTION' => '/sapi',
-        'VERSION' => '/v1'
-    ];
 
-    public function __construct(string $publicKey, string $secretKey, array $config = []){
+    public function __construct(string $publicKey, string $secretKey){
         $this->url = Constants::$url.'/sapi/v1';
         $this->http = new Http\Http();
         Config::$publicKey = $publicKey;
