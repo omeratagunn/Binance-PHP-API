@@ -48,3 +48,14 @@ $binance = new Binance(Config::$publicKey, Config::$secretKey); // pass as strin
 //$exchangeInformationWithMultipleSymbols = $binance->market()->exChangeInformation()->getWithMultipleSymbols(
 //    ['BTCUSDT', 'BNBBTC']);
 
+//$orderbook = $binance->market()->orderBook()->getWithSymbolAndLimit('BTCUSDT', 5);
+//$recentTrades = $binance->market()->recentTradesList()->getWithSymbolAndLimit('BTCUSDT', 5);
+
+$oldTradeLookUp = $binance->market()->oldTradeLookUp()->getWithSymbol('BTCUSDT');
+$oldTradeLookUpWithOptions = $binance->market()->oldTradeLookUp()->getWithOptions([
+    'symbol' => 'BTCUSDT',
+    'limit' => 2,
+    'fromId' => 0
+    ]);
+
+

@@ -45,6 +45,7 @@ class Query
             $request = $http->make()->request($getpost, $url,
                 [
                     'headers' => [
+                        'X-MBX-APIKEY' => Config::$publicKey, // some of them needs only public interestingly. so let it be here //
                         'Accept' => 'application/json',
                     ],
                     'query' => http_build_query($params),
