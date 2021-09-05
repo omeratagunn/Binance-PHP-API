@@ -1,6 +1,8 @@
 # Binance-PHP-API
 Client for Binance API
 
+# On development.
+
 # Examples 
 
 ```
@@ -8,6 +10,9 @@ use binancephpapi\Binance;
 use binancephpapi\Config\Config;
 
 $binance = new Binance('', ''); // first public, second secret // 
+
+
+// Wallet Endpoints //
 
 
 $getAllCoins = $binance->wallet()->getAllCoins();
@@ -32,4 +37,14 @@ $withDrawHistoryWithOptions = $binance->wallet()->withDrawHistory()->getWithOpti
     'coin' => 'ETH'
 
 ]);
+
+$fiatDepositHistory = $binance->wallet()->fiatDepositHistory()->get(1); // https://binance-docs.github.io/apidocs/spot/en/#fiat-endpoints
+
+$accountStatus = $binance->wallet()->accountStatus()->get();
+$accountApiTradingStatus = $binance->wallet()->accountApiTradingStatus()->get();
+$dustLog = $binance->wallet()->dustLog()->get();
+$assetDetail = $binance->wallet()->assetDetail()->get();
+$tradeFee = $binance->wallet()->tradeFee()->get();
+
+
 ```

@@ -6,6 +6,10 @@ use binancephpapi\Config\Config;
 
 $binance = new Binance(Config::$publicKey, Config::$secretKey); // pass as string, then config will handle rest//
 
+
+// Wallet Endpoints //
+
+
 $getAllCoins = $binance->wallet()->getAllCoins();
 
 $getSnapSpot = $binance->wallet()->getDailyAccountSnapShot()->spot();
@@ -29,5 +33,11 @@ $withDrawHistoryWithOptions = $binance->wallet()->withDrawHistory()->getWithOpti
 
 ]);
 
+$fiatDepositHistory = $binance->wallet()->fiatDepositHistory()->get(1); // https://binance-docs.github.io/apidocs/spot/en/#fiat-endpoints
 
+$accountStatus = $binance->wallet()->accountStatus()->get();
+$accountApiTradingStatus = $binance->wallet()->accountApiTradingStatus()->get();
+$dustLog = $binance->wallet()->dustLog()->get();
+$assetDetail = $binance->wallet()->assetDetail()->get();
+$tradeFee = $binance->wallet()->tradeFee()->get();
 
