@@ -7,6 +7,7 @@ namespace binancephpapi;
 use binancephpapi\Config\Config;
 use binancephpapi\Config\Constants;
 use binancephpapi\Http\Query;
+use binancephpapi\Market\MarketEndPoints;
 use binancephpapi\SubAccountEp\SubAccountEndPoints;
 use binancephpapi\Wallet\WalletEndPoints;
 use GuzzleHttp\Exception\GuzzleException;
@@ -35,6 +36,10 @@ class Binance
 
     public function wallet(){
         return new WalletEndPoints($this->http);
+    }
+
+    public function market(){
+        return new MarketEndPoints($this->http);
     }
 
     public function systemStatus(){

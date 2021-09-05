@@ -39,4 +39,23 @@ class Query
         return $request->getBody()->getContents();
     }
 
+    public static function QueryWithoutAuthorization(string $getpost, string $url, Http $http, array $params = []){
+
+        try {
+            $request = $http->make()->request($getpost, $url,
+                [
+                    'headers' => [
+                        'Accept' => 'application/json',
+                    ],
+                    'query' => http_build_query($params),
+                ]);
+
+
+        } catch (GuzzleException $e) {
+
+            return $e->getMessage();
+        }
+        return $request->getBody()->getContents();
+    }
+
 }
