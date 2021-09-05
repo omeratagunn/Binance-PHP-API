@@ -2,5 +2,5 @@
 .idea
 composer.lock
 index.php
-Config
+Config/Config.php
 .phpunit.result.cache
