@@ -46,5 +46,12 @@ $dustLog = $binance->wallet()->dustLog()->get();
 $assetDetail = $binance->wallet()->assetDetail()->get();
 $tradeFee = $binance->wallet()->tradeFee()->get();
 
+// Market Endpoints //
+
+$exchangeInformation = $binance->market()->exChangeInformation()->get();
+$exchangeInformationWithSingleSymbol = $binance->market()->exChangeInformation()->getWithSingleSymbol('BNBBTC');
+$exchangeInformationWithMultipleSymbols = $binance->market()->exChangeInformation()->getWithMultipleSymbols(
+    ['BTCUSDT', 'BNBBTC']);
+
 
 ```
